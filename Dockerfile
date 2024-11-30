@@ -11,7 +11,7 @@ RUN dnf -y install parallel ripgrep \
   jq yq yamllint
 
 # Install Ansible
-RUN dnf install -y ansible-core ansible-lint ansible-collection-community-*
+RUN dnf install -y ansible-core ansible-lint ansible-collection-community-* ansible-builder
 
 # TODO
 #  - yamllint
