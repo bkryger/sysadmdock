@@ -11,7 +11,7 @@ RUN dnf -y install parallel ripgrep \
   jq yq yamllint
 
 # Install Ansible
-RUN dnf install -y ansible-core ansible-lint ansible-collection-community-* ansible-builder
+RUN dnf install -y ansible-core ansible-lint ansible-collection-community-* ansible-builder ansible-core-doc
 
 # TODO
 #  - yamllint
@@ -24,6 +24,10 @@ RUN dnf install -y ansible-core ansible-lint ansible-collection-community-* ansi
 #  - kubectl
 #  - snow & jira cmd line
 
+# Install powershell7
+#RUN dnf install https://github.com/PowerShell/PowerShell/releases/download/v7.4.6/powershell-7.4.6-1.rh.x86_64.rpm
+RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo \
+  && dnf install -y powershell
 
 #run curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" ;\
 #  ls -l ;\
