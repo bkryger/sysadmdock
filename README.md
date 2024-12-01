@@ -20,3 +20,11 @@ For Ansible
 For inspec
 
 
+## What's installed
+- Ansible
+- Inspec
+- Terraform
+- Packer
+- OpenTofu
+- Powershell
+
