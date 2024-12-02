@@ -44,4 +44,8 @@ Start the container and run pwsh to get a powershell command line.
 I'm thinking that maybe that gets its own container so that the libraries can be installed, or maybe just in this container
 I may remove it entirely since you cannot manage a windows box from a linux version of Powershell.  No wmi commands...  Although you can use ssh with it.
 
+## TODO
+- command history
+- fzf, exa/eza, etc
+- tldr, tealdeer, man pages, other docs
 
