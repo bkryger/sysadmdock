@@ -1,12 +1,19 @@
+# System Admin and Engineering Tools Container
+
+This would be like a jump host to perform mass config runs and such.
+Use as a command line with all your favorite tools installed for dev/admin/eng.
 
 
 
 Usage
 -----
 
-docker run --rm -it -v $(pwd):$(pwd) -w $(pwd) --entrypoint bash syseng:test2
+1. Get a command line
+```
+docker run --rm -it -v $(pwd):$(pwd) -w $(pwd) --entrypoint bash syseng:latest
+```
 
-For Ansible
+3. For Ansible
 
 ```
 # docker run --rm \
@@ -17,8 +24,8 @@ For Ansible
 # 	ansible all -m ping
 ```
 
-For inspec
-
+3. For inspec \
+TBD
 
 ## What's installed
 - Ansible
