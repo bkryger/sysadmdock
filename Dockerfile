@@ -1,10 +1,6 @@
 FROM fedora:41
 LABEL maintainer="Bob Kryger <bkryger@gmail.com>"
 
-# TODO - Add user and run as that user (UID 10000)
-# RUN addgroup --gid 10001 --system sysadm \
-#  && adduser  --uid 10000 --system --ingroup sysadm --home /home/nonroot sysadm
-
 RUN dnf -y update
 RUN dnf -y install parallel ripgrep \
   curl wget vim git zip less yum-utils \
@@ -23,16 +19,12 @@ RUN dnf install -y ansible-core ansible-lint ansible-collection-community-* ansi
 #  - keypass-xc (w/ cli)
 #  - kubectl
 #  - snow & jira cmd line
+#  - aws cli (other cloud tools)
 
 # Install powershell7
-#RUN dnf install https://github.com/PowerShell/PowerShell/releases/download/v7.4.6/powershell-7.4.6-1.rh.x86_64.rpm
-RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo \
-  && dnf install -y powershell
-
-#run curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" ;\
-#  ls -l ;\
-#  unzip awscliv2.zip ;\
-#  ./aws/install
+RUN dnf install -y dnf-plugins-core \
+    && dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/config/rhel/7/prod.repo \
+    && dnf install -y powershell
 
 # Install Terraform and Packer
 RUN dnf install -y dnf-plugins-core \
@@ -49,8 +41,9 @@ RUN curl https://omnitruck.chef.io/install.sh | bash -s -- -P inspec
 
 RUN yum -y clean all
 
-RUN groupadd -r syseng && useradd -r -g syseng syseng \
-  && mkdir /syseng && chown syseng /syseng
+# Add user and run as that user (UID 10000)
+RUN useradd -U --uid 10000 --system --home /syseng syseng \
+    && mkdir /syseng && chown syseng /syseng
 
 USER syseng
 WORKDIR /syseng
