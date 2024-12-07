@@ -42,8 +42,9 @@ RUN curl https://omnitruck.chef.io/install.sh | bash -s -- -P inspec
 RUN yum -y clean all
 
 # Add user and run as that user (UID 10000)
-RUN useradd -U --uid 10000 --system --home /syseng syseng \
-    && mkdir /syseng && chown syseng /syseng
+RUN useradd -U --uid 10000 --system --home /syseng --groups wheel syseng \
+    && mkdir /syseng && chown syseng /syseng \
+    && sed -i -e '/^%wheel/s/^/#/' -e '/^# %wheel/s/^# //' /etc/sudoers
 
 USER syseng
 WORKDIR /syseng
