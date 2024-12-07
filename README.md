@@ -49,5 +49,8 @@ I may remove it entirely since you cannot manage a windows box from a linux vers
 - tldr, tealdeer, man pages, other docs
 
 ## Build
+Build the container
+```
 docker build --tag syseng:latest .
+```
 
