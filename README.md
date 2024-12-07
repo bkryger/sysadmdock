@@ -35,7 +35,6 @@ TBD
 - OpenTofu
 - Powershell
 
-
 ## PowerShell is installed
 * See https://learn.microsoft.com/en-us/powershell/scripting/whats-new/unix-support?view=powershell-7.4&viewFallbackFrom=powershell-7.2
 
@@ -48,4 +47,7 @@ I may remove it entirely since you cannot manage a windows box from a linux vers
 - command history
 - fzf, exa/eza, etc
 - tldr, tealdeer, man pages, other docs
+
+## Build
+docker build --tag syseng:latest .
 
