@@ -14,9 +14,9 @@ RUN dnf -y install parallel ripgrep \
 RUN dnf install -y ansible-core ansible-lint ansible-collection-community-* ansible-builder ansible-core-doc
 
 # TODO
-#  - yamllint
-#  - yq https://github.com/mikefarah/yq
-#  - powershell(?)
+#  x yamllint
+#  x yq https://github.com/mikefarah/yq
+#  x powershell(?)
 #  - bash debug
 #  - fpm https://github.com/jordansissel/fpm
 #     git clone https://github.com/jordansissel/fpm.git && (cd fpm && make install) 
@@ -34,10 +34,13 @@ RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/
 #  unzip awscliv2.zip ;\
 #  ./aws/install
 
-# Install Terraform, packer and OpenTofu
-RUN dnf config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo ;\
-  dnf -y install terraform packer ;\
-  curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opentofu.sh -o install-opentofu.sh ;\
+# Install Terraform and Packer
+RUN dnf install -y dnf-plugins-core \
+    && dnf config-manager addrepo --from-repofile=https://rpm.releases.hashicorp.com/fedora/hashicorp.repo \
+    && dnf -y install packer
+
+# Install OpenTofu
+RUN curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opentofu.sh -o install-opentofu.sh ;\
   bash ./install-opentofu.sh --install-method rpm ;\
   rm install-opentofu.sh
 
@@ -46,7 +49,11 @@ RUN curl https://omnitruck.chef.io/install.sh | bash -s -- -P inspec
 
 RUN yum -y clean all
 
-# USER sysadm
+RUN groupadd -r syseng && useradd -r -g syseng syseng \
+  && mkdir /syseng && chown syseng /syseng
+
+USER syseng
+WORKDIR /syseng
 
 ENTRYPOINT ["/usr/bin/bash"]
 
