@@ -4,7 +4,10 @@ LABEL maintainer="Bob Kryger <bkryger@gmail.com>"
 RUN dnf -y update
 RUN dnf -y install parallel ripgrep \
   curl wget vim git zip less yum-utils \
-  jq yq yamllint tealdeer
+  jq yq yamllint
+
+# RUN dnf -y install tealdeer
+#     && tldr --update
 
 # Install Ansible
 RUN dnf install -y ansible-core ansible-lint ansible-collection-community-* ansible-builder ansible-core-doc
