@@ -1,4 +1,6 @@
 FROM fedora:latest
+#FROM fedora-minimal:latest
+#FROM redhat/ubi9-minimal:latest
 LABEL maintainer="Bob Kryger <bkryger@gmail.com>"
 
 RUN dnf -y update
