@@ -47,6 +47,8 @@ I may remove it entirely since you cannot manage a windows box from a linux vers
 - command history
 - fzf, exa/eza, etc
 - tldr, tealdeer, man pages, other docs
+- Try other base contianers
+- Try https://hub.docker.com/r/alpine/ansible
 
 ## Build
 Build the container
