@@ -24,6 +24,17 @@ docker run --rm -it -v $(pwd):$(pwd) -w $(pwd) --entrypoint bash syseng:latest
 # 	ansible all -m ping
 ```
 
+Suggestions from Alpine Ansible readme
+```
+alias ansible="docker run -ti --rm -v ~/.ssh:/root/.ssh -v ~/.aws:/root/.aws -v $(pwd):/apps -w /apps alpine/ansible ansible"
+ansible <follow command>
+```
+
+```
+alias ansible-playbook=" docker run -ti --rm -v ~/.ssh:/root/.ssh -v ~/.aws:/root/.aws -v $(pwd):/apps -w /apps alpine/ansible ansible-playbook"
+ansible-playbook -i inventory < follow command>
+```
+
 3. For inspec \
 TBD
 
