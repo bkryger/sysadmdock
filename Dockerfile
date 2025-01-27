@@ -1,4 +1,4 @@
-FROM fedora:41
+FROM fedora:latest
 LABEL maintainer="Bob Kryger <bkryger@gmail.com>"
 
 RUN dnf -y update
